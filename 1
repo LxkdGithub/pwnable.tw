@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+#define SIZE 0x99
+int main(){
+    char * s;
+    s = (char *)malloc(SIZE);
+    char *s2;
+    s2 = (char *)malloc(SIZE);
+    printf("s addr ->%p\n", s);
+    printf("s2 addr->%p\n", s2);
+//    malloc(50);
+    free(s);
+    free(s2);
+//    malloc(80);
+    
+    s = (char *)malloc(SIZE);
+    printf("s addr ->%p\n", s);
+    s2 = (char *)malloc(SIZE);
+    printf("s2 addr->%p\n", s2);
+    return 0;
+}
+
